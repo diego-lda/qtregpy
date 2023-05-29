@@ -12,6 +12,10 @@ For further details, please refer to the original text.
 
 You can install gtregpy with pip:
 
+`pip install git+https://github.com/diego-lda/gtregpy.git`
+
+Hopefully, in the near future we will upload it to PyPI and you can use:
+
 `pip install gtregpy`
 
 
