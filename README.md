@@ -1,7 +1,7 @@
 # gtregpy
 
 This package provides the software tools to implement Gaussian Transform Regression introduced in 
-“Gaussian transforms modeling and the estimation of distributional regression functions” Spady and Stouli (2020).
+[Spady and Stouli (2020)](https://arxiv.org/pdf/2011.06416.pdf).
 
 With the tools in this package it is possible to obtain inference and estimation results for conditional distribution, 
 quantile and density functions implied by flexible Gaussian representations.
