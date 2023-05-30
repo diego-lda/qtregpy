@@ -1,9 +1,9 @@
 import pytest
-from gtregpy import print_name
+from gtregpy import compute
 
 def test_print_name(capfd):
     # Exercise
-    print_name("John")  # Call the function
+    compute.print_name("John")  # Call the function
 
     # Verify
     out, err = capfd.readouterr()  # Capture the print output
