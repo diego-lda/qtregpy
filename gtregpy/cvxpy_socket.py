@@ -172,7 +172,56 @@ def create_spline_basis(knots: np.ndarray, order: int):
     return bsplines
 
 
+def compute_basic(x: np.ndarray, y: np.ndarray) -> dict:
+    """
+    Perform a series of operations and return the results in a dictionary.
 
+    Args:
+        x (np.ndarray): Input array.
+        y (np.ndarray): Input array.
+
+    Returns:
+        dict: A dictionary containing various computed values.
+    """
+
+    # Build the xs matrix
+    xs = np.concatenate((np.ones((x.shape[0], 1)), x.reshape(-1, 1)), axis=1)
+
+    # Build Ys and ys matrices
+    nobs = len(y)
+    cap_ys = np.c_[np.ones(len(y)), y]
+    low_ys = np.array([0, 1] * nobs).reshape(nobs, 2)
+
+    # Build the TYX and tYX matrices
+    big_tyx = form_tz(x=xs, y=cap_ys)
+    low_tyx = form_tz(x=xs, y=low_ys)
+
+    # Solve the problem
+    result, e_value, h_value, b_hat = solve_cvxpy(big_tyx, low_tyx, algorithm='ECOS')
+
+    # Manipulate results to return
+    finalscore = score(e_value, h_value, big_tyx, low_tyx)
+    objval = get_dllf(e_value, h_value)
+    llf_vec = np.log(norm.pdf(e_value) * (-1/h_value))
+    llf = np.sum(llf_vec)
+    e_hat = -np.dot(big_tyx, b_hat)
+    eta_hat = np.dot(low_tyx, b_hat)
+
+    ans = {
+        "llf": llf,
+        "e": e_value,
+        "eta": -1/h_value,
+        "finalscore": finalscore,
+        "result": result,
+        "e_hat": e_hat,
+        "eta_hat": eta_hat,
+        "h": h_value,
+        "objval": objval,
+        "llf_vec": llf_vec,
+        "b_mat": b_hat
+    }
+
+    return ans
 
 
 
@@ -181,42 +230,6 @@ def create_spline_basis(knots: np.ndarray, order: int):
 file_path = "/Users/diegolara/PycharmProjects/using_gtreg/data/melbourne_data.csv"
 x, y = load_mel_data(file_path)
 
-# Build the xs matrix
-xs = np.concatenate((np.ones((x.shape[0], 1)), x.reshape(-1, 1)), axis=1)
+answer = compute_basic(x, y)
 
-# Build Ys and ys matrices
-nobs = len(y)
-cap_ys = np.c_[np.ones(len(y)), y]
-low_ys = np.array([0, 1] * nobs).reshape(nobs, 2)
-
-# Build the TYX and tYX matrices
-big_tyx = form_tz(x=xs, y=cap_ys)
-low_tyx = form_tz(x=xs, y=low_ys)
-
-# Solve the problem
-result, e_value, h_value, b_hat = solve_cvxpy(big_tyx, low_tyx, algorithm='ECOS')
-
-
-# Manipulate results to return
-finalscore = score(e_value, h_value, big_tyx, low_tyx)
-objval = get_dllf(e_value, h_value)
-llf_vec = np.log(norm.pdf(e_value) * (-1/h_value))
-llf = np.sum(llf_vec)
-e_hat = -np.dot(big_tyx, b_hat)
-eta_hat = np.dot(low_tyx, b_hat)
-
-ans = {
-    "llf": llf,
-    "e": e_value,
-    "eta": -1/h_value,
-    "finalscore": finalscore,
-    "result": result,
-    "e_hat": e_hat,
-    "eta_hat": eta_hat,
-    "h": h_value,
-    "objval": objval,
-    "llf_vec": llf_vec,
-    "b_mat": b_hat
-}
-
-print(ans)
+print(answer)
