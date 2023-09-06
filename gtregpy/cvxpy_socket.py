@@ -171,7 +171,6 @@ def create_spline_basis(knots: np.ndarray, order: int):
     bsplines = [BSpline.basis_element(knots[i:i+order+1]) for i in range(nknots - order)]
     return bsplines
 
-
 def compute_basic(x: np.ndarray, y: np.ndarray) -> dict:
     """
     Perform a series of operations and return the results in a dictionary.
@@ -222,9 +221,6 @@ def compute_basic(x: np.ndarray, y: np.ndarray) -> dict:
     }
 
     return ans
-
-
-
 
 # Load the data from file
 file_path = "/Users/diegolara/PycharmProjects/using_gtreg/data/melbourne_data.csv"

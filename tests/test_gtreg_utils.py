@@ -30,3 +30,4 @@ def test_beta_check():
     bmat = np.array([1, 2])
     result = gtreg_utils.beta_check(bmat, Xs, 2, 1)
     assert result is None
+    

@@ -18,6 +18,7 @@ def print_name(name):
         None
     """
     print(f"Hello, {name}!")
+
 def calc_loglike(b: np.ndarray, TYX: np.ndarray, tYX: np.ndarray) -> float:
     """
     Calculates the log-likelihood function.
@@ -49,6 +50,7 @@ def calc_dedy(tYX: np.ndarray, b: np.ndarray) -> np.ndarray:
     """
     dedy = np.matmul(tYX, b)
     return dedy
+
 def calc_score(e: np.ndarray, eta: np.ndarray, TYX: np.ndarray) -> np.ndarray:
     """
     Calculate the score vector given error and eta values.
@@ -63,6 +65,7 @@ def calc_score(e: np.ndarray, eta: np.ndarray, TYX: np.ndarray) -> np.ndarray:
     """
     grad = TYX.T @ e + TYX.T @ eta
     return grad
+
 def get_dimensions(TYX: np.ndarray) -> tuple[int, int]:
     """
     Get the dimensions of the TYX matrix.
@@ -121,6 +124,7 @@ def set_lamx(k_score: np.ndarray, gam, lam, lam_vec, nXs, nYS, zeros, weights) -
             lamx = np.asarray(lam) * weights
 
     return lamx
+
 def set_kscore(k_score: np.ndarray) -> tuple[np.ndarray, bool]:
     """
     Set the kth score of an array to zero and determine if score bounds exist.
@@ -152,6 +156,7 @@ def get_xminmax(TYX: np.ndarray) -> tuple[float, float]:
     xmax = np.max(TYX[:, 1])
 
     return xmin, xmax
+
 def get_dedygridp2(b, sYgrid, M, nYS, nXs, TYX):
     """
     Calculate the minimum value of BetaY using b, sYgrid, M, nYS, nXs, xmin, and xmax.
@@ -257,6 +262,7 @@ def get_beta_2x(b, Xs, M, nXs, nYS):
     Beta = Xs_now @ Mb_reshaped
 
     return np.min(Beta[:, 1])
+
 def set_constraints(pen, bounded, beta2, b, c_bound, cval, Xs, M, nXs, nYS, sYgrid, TYX):
     """
     Set the constraints based on the given conditions.
@@ -346,7 +352,3 @@ def gtr_solve_primal(TYX: np.ndarray, k_score: np.ndarray):
     # set_problem()
     # solve_problem()
     # get_solinfo()
-
-
-
-

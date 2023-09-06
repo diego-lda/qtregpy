@@ -12,7 +12,6 @@ def test_print_name(capfd):
     out, err = capfd.readouterr()  # Capture the print output
     assert out == "Hello, John!\n"  # Verify the output
 
-
 def test_calc_loglike():
     # define your matrices
     b = np.array([1, 2, 3])
