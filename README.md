@@ -14,11 +14,6 @@ You can install gtregpy with pip:
 
 `pip install git+https://github.com/diego-lda/gtregpy.git`
 
-Hopefully, in the near future we will upload it to PyPI and you can use:
-
-`pip install gtregpy`
-
-
 ## Usage
 
 Here's a simple example of how to use gtregpy:
@@ -45,6 +40,3 @@ We welcome contributions! Please see the [Contribution Guide](CONTRIBUTING.md) f
 
 ## License
 This package is licensed under the MIT license. See the LICENSE file for details.
-
-
-
