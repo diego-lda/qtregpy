@@ -5,3 +5,4 @@
 # the API easier to use.
 
 from .compute import print_name
+from .cvxpy_socket import compute_basic
