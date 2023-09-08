@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="gtregpy",
-    version="0.0.3",
+    version="0.0.4",
     author="Sami Stouli, Richard Spady, Xiaoran Liang, Diego Lara",
     author_email="s.stouli@bristol.ac.uk, rspady@jhu.edu, x.liang2@exeter.ac.uk, diegolaradeandres@gmail.com",
     description="A Python package to implement the Gaussian Transform Regression.",

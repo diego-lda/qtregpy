@@ -171,17 +171,15 @@ def create_spline_basis(knots: np.ndarray, order: int):
     bsplines = [BSpline.basis_element(knots[i:i+order+1]) for i in range(nknots - order)]
     return bsplines
 
-def compute_basic(x: np.ndarray, y: np.ndarray) -> dict:
-    """
-    Perform a series of operations and return the results in a dictionary.
+def _process_inputs(x, y, big_tyx, low_tyx):
+    # Check if c and d are not None
+    if big_tyx is not None and low_tyx is not None:
+        return big_tyx, low_tyx
 
-    Args:
-        x (np.ndarray): Input array.
-        y (np.ndarray): Input array.
-
-    Returns:
-        dict: A dictionary containing various computed values.
-    """
+    # If a and b are None, print an error message
+    if x is None or y is None:
+        print("Error: Didn't pass the right data.")
+        return None
 
     # Build the xs matrix
     xs = np.concatenate((np.ones((x.shape[0], 1)), x.reshape(-1, 1)), axis=1)
@@ -195,16 +193,34 @@ def compute_basic(x: np.ndarray, y: np.ndarray) -> dict:
     big_tyx = form_tz(x=xs, y=cap_ys)
     low_tyx = form_tz(x=xs, y=low_ys)
 
+    return big_tyx, low_tyx
+
+def compute_basic(x: np.ndarray = None, y: np.ndarray = None, big_tyx: np.ndarray = None, low_tyx: np.array = None) -> dict:
+    """
+    Perform a series of operations and return the results in a dictionary.
+
+    Args:
+        x (np.ndarray): Input array.
+        y (np.ndarray): Input array.
+        big_tyx (np.ndarray): The TYX matrix.
+        low_tyx (np.ndarray): The tYX matrix.
+
+    Returns:
+        dict: A dictionary containing various computed values.
+    """
+    
+    b_tyx, l_tyx = _process_inputs(x, y, big_tyx, low_tyx)
+    
     # Solve the problem
-    result, e_value, h_value, b_hat = solve_cvxpy(big_tyx, low_tyx, algorithm='ECOS')
+    result, e_value, h_value, b_hat = solve_cvxpy(b_tyx, l_tyx, algorithm='ECOS')
 
     # Manipulate results to return
-    finalscore = score(e_value, h_value, big_tyx, low_tyx)
+    finalscore = score(e_value, h_value, b_tyx, l_tyx)
     objval = get_dllf(e_value, h_value)
     llf_vec = np.log(norm.pdf(e_value) * (-1/h_value))
     llf = np.sum(llf_vec)
-    e_hat = -np.dot(big_tyx, b_hat)
-    eta_hat = np.dot(low_tyx, b_hat)
+    e_hat = -np.dot(b_tyx, b_hat)
+    eta_hat = np.dot(l_tyx, b_hat)
 
     ans = {
         "llf": llf,
