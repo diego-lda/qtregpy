@@ -223,9 +223,9 @@ def compute_basic(x: np.ndarray, y: np.ndarray) -> dict:
     return ans
 
 # Load the data from file
-file_path = "/Users/diegolara/PycharmProjects/using_gtreg/data/melbourne_data.csv"
-x, y = load_mel_data(file_path)
-
-answer = compute_basic(x, y)
-
-print(answer)
+#file_path = "/Users/diegolara/PycharmProjects/using_gtreg/data/melbourne_data.csv"
+#x, y = load_mel_data(file_path)
+#
+#answer = compute_basic(x, y)
+#
+#print(answer)
