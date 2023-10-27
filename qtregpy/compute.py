@@ -336,19 +336,3 @@ def set_constraints(pen, bounded, beta2, b, c_bound, cval, Xs, M, nXs, nYS, sYgr
         constr.extend([constraint_condns1, constraint_condns2])
 
     return constr
-
-def gtr_solve_primal(TYX: np.ndarray, k_score: np.ndarray):
-    nobs, bdim = get_dimensions(TYX)
-    k_score, scorebounds = set_kscore(k_score)
-    k_gauss = math.log(1 / math.sqrt(2 * math.pi))
-    b = cp.Variable(bdim)
-    # set_problemfns()
-    lamx = set_lamx(k_score, gam, lam, lam_vec, nXs, nYS, zeros, weights)
-    reg = gam * np.sum(lamx * np.abs(b))
-    elastic = egam * np.linalg.norm(b - btarg, 2)
-    obj = calc_loglike(b, TYX, tYX) - reg - elastic
-    # set_problemmats()
-    constraints = set_constraints(pen, bounded, beta2, b, c_bound, cval, Xs, M, nXs, nYS, sYgrid, TYX)
-    # set_problem()
-    # solve_problem()
-    # get_solinfo()
