@@ -13,7 +13,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/diego-lda/qtregpy",
-    download_url="https://github.com/diego-lda/qtregpy/archive/refs/tags/0.0.4.tar.gz",
+    download_url="https://github.com/diego-lda/qtregpy/archive/refs/tags/0.0.5.tar.gz",
     keywords=['DISTRIBUTION', 'DENSITY', 'ECONOMETRICS', 'ESTIMATION'],
     packages=find_packages(),
     requires=[
