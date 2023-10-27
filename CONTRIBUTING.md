@@ -1,4 +1,4 @@
-# Contributing to gtregpy
+# Contributing to qtregpy
 
 We would love for you to contribute to the gtregpy package and help make it even better than it is today! 
 As a contributor, here are the guidelines we would like you to follow:

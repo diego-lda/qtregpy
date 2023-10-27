@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from gtregpy import gtreg_utils
+from qtregpy import gtreg_utils
 
 def test_beta_check():
     """Tests the beta_check function in utils.py.

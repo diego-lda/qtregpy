@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import math
 
-from gtregpy import compute
+from qtregpy import compute
 
 def test_print_name(capfd):
     # Exercise
