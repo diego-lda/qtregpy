@@ -4,5 +4,7 @@
 # accessible directly from the package instead of the module. This can make
 # the API easier to use.
 
-from .compute import print_name
+from .compute import calc_loglike
+from .gtreg_utils import beta_check
 from .cvxpy_socket import compute_basic
+from .ingestion import load_mel_data

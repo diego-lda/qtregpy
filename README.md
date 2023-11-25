@@ -10,23 +10,26 @@ For further details, please refer to the original text.
 
 ## Installation
 
-You can install gtregpy with pip:
+You can install gtregpy with pip directly from PyPI.
 
-`pip install git+https://github.com/diego-lda/qtregpy.git`
+`pip install qtregpy`
 
 ## Usage
 
 Here's a simple example of how to use gtregpy:
 
 ```python
-from gtregpy import print_name
+import qtregpy as qtr
 
-print_name("John")
+mel_data_path = 'filepath/melbeourne.csv'
+
+x, y = qtr.load_mel_data(mel_data_path)
+mel_answer = qtr.compute_basic(x, y)
 ```
 
 ## Documentation
 
-You can find more detailed documentation for each function in the docs directory.
+You can find more detailed documentation for each function in docstrings.
 
 ## Testing
 

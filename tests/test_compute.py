@@ -2,15 +2,7 @@ import pytest
 import numpy as np
 import math
 
-from qtregpy import compute
-
-def test_print_name(capfd):
-    # Exercise
-    compute.print_name("John")  # Call the function
-
-    # Verify
-    out, err = capfd.readouterr()  # Capture the print output
-    assert out == "Hello, John!\n"  # Verify the output
+import qtregpy as qtr
 
 def test_calc_loglike():
     # define your matrices
@@ -26,4 +18,4 @@ def test_calc_loglike():
     expected_result = np.sum(llfvec)
 
     # compare the expected result to the result from your function
-    assert np.isclose(compute.calc_loglike(b, TYX, tYX), expected_result)
+    assert np.isclose(qtr.calc_loglike(b, TYX, tYX), expected_result)
