@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="qtregpy",
-    version="0.1.0",
+    version="0.1.1",
     author="Sami Stouli, Richard Spady, Xiaoran Liang, Diego Lara",
     author_email="s.stouli@bristol.ac.uk, rspady@jhu.edu, x.liang2@exeter.ac.uk, diegolaradeandres@gmail.com",
     description="A Python package to implement the Quantile Transformation Regression.",
@@ -13,7 +13,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/diego-lda/qtregpy",
-    download_url="https://github.com/diego-lda/qtregpy/archive/refs/tags/0.1.0.tar.gz",
+    download_url="https://github.com/diego-lda/qtregpy/archive/refs/tags/0.1.1.tar.gz",
     keywords=['DISTRIBUTION', 'DENSITY', 'ECONOMETRICS', 'ESTIMATION'],
     packages=find_packages(),
     requires=[
