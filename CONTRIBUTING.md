@@ -25,7 +25,6 @@ If you're able to contribute to the codebase, here are the steps to do so:
 4. Make sure your code follows our linting rules.
 5. If you haven't already, complete the Contributor License Agreement ("CLA").
 
-
 ## Code Style
 
 Please adhere to the PEP8 coding standards for Python and the Google Python Style Guide. 
