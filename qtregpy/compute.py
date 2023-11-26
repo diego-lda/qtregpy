@@ -511,8 +511,8 @@ def prepare_gtr_primal(x: np.ndarray, y: np.ndarray, tyx: np.ndarray, k_score: n
     btarg = np.zeros(nxs * nys)
     egam = 0
     
-    ltlz = tz_form(vec_a=xs,vec_a=lyls)
-    tlz = tz_form(vec_a=xs,vec_a=lys)
+    ltlz = tz_form(vec_a=xs,vec_b=lyls)
+    tlz = tz_form(vec_a=xs,vec_b=lys)
     
     ltlylx = ltlz
     tlylx = tlz
