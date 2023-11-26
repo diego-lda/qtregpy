@@ -36,3 +36,32 @@ def load_mel_data(file_path: str) -> tuple:
 
     # Return the arrays
     return x, y
+
+def data_norm(x: np.ndarray, mean: float = 0, sd: float = 1, log: bool = False) -> np.ndarray:
+    """
+    Data Normalization
+
+    This function normalizes the data. It applies a transformation so that the data
+    has a specified mean and standard deviation.
+
+    Args:
+        x (np.ndarray): The data to be normalized.
+        mean (float, optional): The value to center on. Defaults to 0.
+        sd (float, optional): The standard deviation to target. Defaults to 1.
+        log (bool, optional): Whether to apply a logarithmic transformation to the data. Defaults to False.
+
+    Returns:
+        np.ndarray: A normalized version of the data.
+
+    Examples:
+        >>> data = np.array([1, 2, 3, 4, 5])
+        >>> normalized_data = data_norm(data, mean=0, sd=1)
+        >>> print(normalized_data)
+        >>> log_normalized_data = data_norm(data, mean=0, sd=1, log=True)
+        >>> print(log_normalized_data)
+    """
+    if log:
+        x = np.log(x)
+
+    ans = 0.3989422804014327 * np.exp(-0.5 * ((x - mean) / sd) ** 2) / sd
+    return ans
